@@ -55,15 +55,24 @@ public class matrixmodular{
                 int[][] matrix = new int[row][column];
                 for(int i=0; i< row; i++){
                 for(int j=0; j < column; j++){
+                    int right = 0; 
+                while(right==0)//while loop will run as long as right is 0. 
+                {
                 try{
-                matrix[i][j] = ins.nextInt();}
+                //if element of matrix is succefully inputted, right increases to one and the while loop breaks
+                matrix[i][j] = ins.nextInt();
+                right+=1;}
                 //catch error if user inputs any other character except an integer
-                catch(NumberFormatException e){System.out.print("Invalid Matrix element");
+                catch(InputMismatchException e){System.out.println("Invalid Matrix element. Enter Matrix values again");
+                //when an error occurs, right remains 0 and the while loop runs again to retake input for the same row
+                ins.next(); //this clears the error from scanner input
+                }
                 }
             }
         }
         return matrix;      
     }
+
     //function finds the product of the two matrixes
     public static int[][] product(int[][] matrixA, int[][] matrixB){
         int[][] resultant =new int[matrixA.length][matrixB[0].length];
